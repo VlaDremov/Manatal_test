@@ -13,4 +13,7 @@ def upload_file(uploaded_file: UploadFile = File(...)):
         shutil.copyfileobj(uploaded_file.file, file)
     data = ResumeParser(path).get_extracted_data()
     data = json.dumps(data).encode('utf8')
-    return {data}
+    return data
+
+#CURL to test the API: 
+#curl.exe -X POST http://127.0.0.1:8000/parse_resume -H "Content-Type: multipart/form-data" -F "uploaded_file=@C://YOUR_PATH/YOURFILE.pdf;type=application/pdf" 
